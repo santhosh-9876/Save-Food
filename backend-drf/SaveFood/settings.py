@@ -145,7 +145,7 @@ SIMPLE_JWT = {
 }
 
 
-# CORS_ALLOW_ALL_ORIGINS = False
+CORS_ALLOW_ALL_ORIGINS = False
 
 CORS_ALLOWED_ORIGINS = [
     "https://save-food-seven.vercel.app",  # Production Vercel URL
