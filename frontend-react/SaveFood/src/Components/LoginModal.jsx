@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
+import axiosInstance from "../Api/axiosInstance";
 import { useNavigate } from "react-router-dom";
 import { Modal, Box, TextField, Button, Typography, Alert, IconButton, CircularProgress } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
@@ -56,8 +56,8 @@ const LoginModal = ({ open, onClose, onSwitchToRegister }) => {
     setIsLoading(true);
 
     try {
-      const response = await axios.post(
-        "http://127.0.0.1:8000/user/login/",
+      const response = await axiosInstance.post(
+        "/user/login/",
         data
       );
 

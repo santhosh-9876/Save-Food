@@ -217,7 +217,7 @@ const Donor = () => {
         }
       } else if (err.message) {
         if (err.message === "Network Error") {
-          setSubmitError("Cannot connect to server. Please make sure the backend is running on http://127.0.0.1:8000");
+          setSubmitError("Cannot connect to server. Please check your internet connection and try again.");
         } else {
           setSubmitError(`Error: ${err.message}`);
         }

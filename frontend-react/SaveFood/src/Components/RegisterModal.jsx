@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import axiosInstance from "../Api/axiosInstance";
 import { Modal, Box, TextField, Button, Typography, Alert, IconButton, CircularProgress } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
@@ -65,8 +65,8 @@ const RegisterModal = ({ open, onClose, onSwitchToLogin }) => {
     setSuccessMessage("");
 
     try {
-      const response = await axios.post(
-        "http://127.0.0.1:8000/user/register/",
+      const response = await axiosInstance.post(
+        "/user/register/",
         data
       );
 
