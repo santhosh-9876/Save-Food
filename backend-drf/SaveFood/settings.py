@@ -13,9 +13,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-8=8#)w@i#m7ddyb-(mn_=lgicw_om-!txmmj=_kg29xx&d!wu#')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', 'True') == 'True'
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ['*']  # Update with your Render domain later
+ALLOWED_HOSTS = [
+    'biteshare-api.onrender.com',
+    'localhost',
+    '127.0.0.1',
+]
 
 
 # Application definition
@@ -141,13 +145,18 @@ SIMPLE_JWT = {
 }
 
 
-CORS_ALLOW_ALL_ORIGINS = True
+# CORS_ALLOW_ALL_ORIGINS = False
 
-# For production, update this to your Vercel domain:
-# CORS_ALLOWED_ORIGINS = [
-#     "https://your-app.vercel.app",
-# ]
+CORS_ALLOWED_ORIGINS = [
+    "https://your-vercel-app.vercel.app",  # Replace with your actual Vercel URL
+    "http://localhost:5173",  # Local development
+    "http://127.0.0.1:5173",  # Local development alternative
+]
 
 
 
 
+CORS_ALLOWED_ORIGINS = [
+    "https://save-food-seven.vercel.app/",
+]
+CORS_ALLOW_ALL_ORIGINS = False
