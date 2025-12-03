@@ -148,7 +148,7 @@ SIMPLE_JWT = {
 # CORS_ALLOW_ALL_ORIGINS = False
 
 CORS_ALLOWED_ORIGINS = [
-    "https://your-vercel-app.vercel.app",  # Replace with your actual Vercel URL
+    "https://save-food-seven.vercel.app",  # Production Vercel URL
     "http://localhost:5173",  # Local development
     "http://127.0.0.1:5173",  # Local development alternative
 ]
