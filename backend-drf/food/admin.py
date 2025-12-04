@@ -1,29 +1,42 @@
 from django.contrib import admin
-from .models import *
+from .models import Donor, Claim
 
 
 @admin.register(Donor)
 class DonorAdmin(admin.ModelAdmin):
-    list_display = ('food_name', 'donor', 'quantity', 'location', 'expiry_date', 'is_available', 'created_at')
-    list_filter = ('is_available', 'expiry_date', 'created_at')
-    search_fields = ('food_name', 'donor__username', 'location', 'description')
-    readonly_fields = ('created_at', 'updated_at')
-    list_editable = ('is_available',)
+    list_display = ('title', 'donor', 'Quantity', 'District', 'expiry_at', 'food_type', 'created_at')
+    list_filter = ('food_type', 'District', 'created_at')
+    search_fields = ('title', 'donor__username', 'District', 'description', 'Address')
+    readonly_fields = ('created_at', 'expiry_at')
     date_hierarchy = 'created_at'
     ordering = ('-created_at',)
     
     fieldsets = (
         ('Food Information', {
-            'fields': ('food_name', 'description', 'quantity', 'food_type')
+            'fields': ('title', 'description', 'Quantity', 'food_type', 'people_can_feed')
         }),
-        ('Donor & Location', {
-            'fields': ('donor', 'location', 'contact_info')
+        ('Donor', {
+            'fields': ('donor',)
         }),
-        ('Availability', {
-            'fields': ('expiry_date', 'is_available')
+        ('Location & Contact', {
+            'fields': ('Address', 'District', 'pincode', 'phone')
+        }),
+        ('Expiry', {
+            'fields': ('expiry_hours', 'expiry_at')
         }),
         ('Timestamps', {
-            'fields': ('created_at', 'updated_at'),
+            'fields': ('created_at',),
             'classes': ('collapse',)
         }),
     )
+
+
+@admin.register(Claim)
+class ClaimAdmin(admin.ModelAdmin):
+    list_display = ('food', 'claimer', 'quantity_claimed', 'status', 'claimed_at')
+    list_filter = ('status', 'claimed_at')
+    search_fields = ('claimer__username', 'food__title', 'claimer_name')
+    readonly_fields = ('claimed_at', 'updated_at')
+    list_editable = ('status',)
+    date_hierarchy = 'claimed_at'
+    ordering = ('-claimed_at',)
