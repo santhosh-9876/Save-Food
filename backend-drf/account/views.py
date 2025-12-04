@@ -96,3 +96,59 @@ class CreateSuperuserView(APIView):
                 {"error": str(e)},
                 status=status.HTTP_400_BAD_REQUEST
             )
+
+
+class PromoteToAdminView(APIView):
+    permission_classes = [AllowAny]
+    
+    def post(self, request):
+        from django.contrib.auth.models import User
+        
+        # Security: Only allow if no superuser exists
+        if User.objects.filter(is_superuser=True).exists():
+            return Response(
+                {"message": "Admin already exists. This endpoint is disabled."},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        
+        username = request.data.get('username')
+        password = request.data.get('password')
+        
+        if not username or not password:
+            return Response(
+                {"error": "Username and password are required"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        
+        try:
+            user = User.objects.get(username=username)
+            
+            # Verify password
+            if not user.check_password(password):
+                return Response(
+                    {"error": "Invalid credentials"},
+                    status=status.HTTP_401_UNAUTHORIZED
+                )
+            
+            # Promote to superuser
+            user.is_staff = True
+            user.is_superuser = True
+            user.save()
+            
+            return Response(
+                {
+                    "message": f"User '{username}' promoted to superuser successfully!",
+                    "note": "You can now login at /admin/"
+                },
+                status=status.HTTP_200_OK
+            )
+        except User.DoesNotExist:
+            return Response(
+                {"error": "User not found"},
+                status=status.HTTP_404_NOT_FOUND
+            )
+        except Exception as e:
+            return Response(
+                {"error": str(e)},
+                status=status.HTTP_400_BAD_REQUEST
+            )
