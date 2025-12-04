@@ -57,3 +57,42 @@ class Logout_View(APIView):
                 {"error": "Invalid token"},
                 status=status.HTTP_400_BAD_REQUEST
             )
+
+
+class CreateSuperuserView(APIView):
+    permission_classes = [AllowAny]
+    
+    def post(self, request):
+        from django.contrib.auth.models import User
+        import os
+        
+        # Security: Only allow if no superuser exists
+        if User.objects.filter(is_superuser=True).exists():
+            return Response(
+                {"message": "Superuser already exists. Admin setup is complete."},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        
+        username = request.data.get('username', 'admin')
+        password = request.data.get('password', 'admin123')
+        email = request.data.get('email', 'admin@biteshare.com')
+        
+        try:
+            user = User.objects.create_superuser(
+                username=username,
+                email=email,
+                password=password
+            )
+            return Response(
+                {
+                    "message": "Superuser created successfully!",
+                    "username": username,
+                    "note": "You can now login at /admin/"
+                },
+                status=status.HTTP_201_CREATED
+            )
+        except Exception as e:
+            return Response(
+                {"error": str(e)},
+                status=status.HTTP_400_BAD_REQUEST
+            )
