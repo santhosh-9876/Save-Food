@@ -19,12 +19,12 @@ const About = () => {
 
   useEffect(() => {
     AOS.init({
-      duration: 800,
-      once: false, // Allow animations to repeat on scroll
-      easing: 'ease-out-cubic',
-      offset: 120,
+      duration: 600,
+      once: true, // Only animate once for better performance
+      easing: 'ease-out-quart',
+      offset: 100,
       delay: 0,
-      mirror: true, // Animate elements out when scrolling past them
+      mirror: false, // Disable mirror for better performance
       anchorPlacement: 'top-bottom',
     });
   }, []);
@@ -107,7 +107,7 @@ const About = () => {
       
       {/* Floating particles */}
       <div className="particles">
-        {[...Array(10)].map((_, i) => (
+        {[...Array(5)].map((_, i) => (
           <div
             key={i}
             className="particle"

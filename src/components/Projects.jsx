@@ -91,7 +91,7 @@ const Projects = () => {
       
       {/* Floating particles */}
       <div className="particles">
-        {[...Array(15)].map((_, i) => (
+        {[...Array(8)].map((_, i) => (
           <div
             key={i}
             className="particle"
