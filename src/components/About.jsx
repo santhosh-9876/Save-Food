@@ -105,6 +105,8 @@ const About = () => {
       <div className="glow-dot" style={{ top: '15%', right: '20%', animationDelay: '0.5s' }}></div>
       <div className="glow-dot" style={{ bottom: '25%', left: '15%', animationDelay: '1.5s' }}></div>
       
+
+      
       {/* Floating particles */}
       <div className="particles">
         {[...Array(5)].map((_, i) => (
@@ -230,61 +232,15 @@ const About = () => {
                   data-aos-easing="ease-out-back"
                   data-aos-anchor-placement="center-bottom"
                 >
-                  {/* Animated gradient background */}
-                  <motion.div 
-                    className={`absolute inset-0 bg-gradient-to-br ${colors[index % colors.length]} rounded-2xl opacity-0 group-hover:opacity-20 transition-all duration-300`}
-                    whileHover={{
-                      scale: [1, 1.2, 1],
-                      rotate: [0, 180, 360],
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      ease: "easeInOut"
-                    }}
-                  />
+                  {/* Simple gradient background */}
+                  <div className={`absolute inset-0 bg-gradient-to-br ${colors[index % colors.length]} rounded-2xl opacity-0 group-hover:opacity-20 transition-all duration-300`} />
                   
-                  {/* Floating particles on hover */}
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    {[...Array(6)].map((_, i) => (
-                      <motion.div
-                        key={i}
-                        className={`absolute w-1 h-1 bg-gradient-to-r ${colors[index % colors.length]} rounded-full`}
-                        style={{
-                          left: `${20 + i * 15}%`,
-                          top: `${20 + i * 10}%`,
-                        }}
-                        animate={{
-                          y: [-10, -20, -10],
-                          opacity: [0, 1, 0],
-                          scale: [0, 1, 0],
-                        }}
-                        transition={{
-                          duration: 2,
-                          repeat: Infinity,
-                          delay: i * 0.2,
-                          ease: "easeInOut"
-                        }}
-                      />
-                    ))}
-                  </div>
+
                   
                   {/* Glowing border effect */}
                   <div className={`absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-gradient-to-r group-hover:${colors[index % colors.length]} opacity-0 group-hover:opacity-100 transition-all duration-300`} />
                   
-                  {/* Pulsing glow */}
-                  <motion.div
-                    className={`absolute -inset-2 bg-gradient-to-r ${colors[index % colors.length]} rounded-2xl opacity-0 group-hover:opacity-30 blur-xl`}
-                    animate={{
-                      scale: [1, 1.1, 1],
-                      opacity: [0, 0.3, 0],
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      ease: "easeInOut"
-                    }}
-                  />
+
                   
                   <motion.div 
                     className="relative z-10"
@@ -309,53 +265,25 @@ const About = () => {
                       data-aos-duration="600"
                       data-aos-delay={200 + index * 100}
                     >
-                      <skill.icon className={`w-12 h-12 ${skill.color}`} />
-                      
-                      {/* Icon glow effect */}
-                      <motion.div
-                        className="absolute inset-0 flex justify-center opacity-0 group-hover:opacity-50 blur-sm"
-                        animate={{
-                          scale: [1, 1.2, 1],
-                        }}
-                        transition={{
-                          duration: 1.5,
-                          repeat: Infinity,
-                          ease: "easeInOut"
-                        }}
-                      >
-                        <skill.icon className={`w-12 h-12 ${skill.color}`} />
-                      </motion.div>
+                      <skill.icon className={`w-12 h-12 ${skill.color} group-hover:scale-110 transition-transform duration-300`} />
                     </motion.div>
                     
-                    {/* Text with typewriter effect */}
-                    <motion.div 
+                    {/* Text with simple hover effect */}
+                    <div 
                       className="font-semibold text-white dark:text-white text-xl group-hover:text-2xl transition-all duration-300 overflow-hidden"
-                      whileHover={{
-                        scale: 1.05,
-                        y: -5,
-                        textShadow: "0 0 8px rgba(59, 130, 246, 0.5)",
-                        transition: { duration: 0.2, ease: "easeOut" }
-                      }}
                       data-aos="fade-up"
                       data-aos-duration="500"
                       data-aos-delay={300 + index * 100}
                     >
-                      <motion.span
+                      <span
                         className={`inline-block bg-gradient-to-r ${colors[index % colors.length]} bg-clip-text text-transparent group-hover:text-transparent transition-all duration-300`}
                       >
                         {skill.name}
-                      </motion.span>
-                    </motion.div>
+                      </span>
+                    </div>
                     
                     {/* Enhanced hover content */}
-                    <motion.div
-                      className="mt-3 max-h-0 group-hover:max-h-20 opacity-0 group-hover:opacity-100 overflow-hidden transition-all duration-300 delay-100"
-                      initial={{ opacity: 0, y: 10 }}
-                      whileHover={{ opacity: 1, y: 0 }}
-                      data-aos="fade-in"
-                      data-aos-duration="400"
-                      data-aos-delay={400 + index * 100}
-                    >
+                    <div className="mt-3 max-h-0 group-hover:max-h-20 opacity-0 group-hover:opacity-100 overflow-hidden transition-all duration-300 delay-100">
                       <div className="text-center space-y-2">
                         <div 
                           className={`text-sm group-hover:text-base font-semibold ${skill.color} uppercase tracking-wider transition-all duration-300`}
@@ -380,21 +308,10 @@ const About = () => {
                           data-aos-delay={550 + index * 100}
                         ></div>
                       </div>
-                    </motion.div>
+                    </div>
                   </motion.div>
                   
-                  {/* Ripple effect on hover */}
-                  <motion.div
-                    className="absolute inset-0 rounded-2xl"
-                    whileHover={{
-                      boxShadow: [
-                        "0 0 0 0 rgba(59, 130, 246, 0.4)",
-                        "0 0 0 10px rgba(59, 130, 246, 0.1)",
-                        "0 0 0 20px rgba(59, 130, 246, 0)"
-                      ]
-                    }}
-                    transition={{ duration: 0.6 }}
-                  />
+
                 </motion.div>
               );
             })}

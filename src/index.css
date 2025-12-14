@@ -466,3 +466,18 @@
   backface-visibility: hidden;
   perspective: 1000px;
 }
+/* Optimized particle animations */
+@keyframes float-particle-optimized {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(15px, -20px, 0) rotate(180deg);
+  }
+}
+
+.particle {
+  animation: float-particle-optimized 15s infinite ease-in-out;
+  will-change: transform;
+  backface-visibility: hidden;
+}

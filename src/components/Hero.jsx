@@ -21,8 +21,8 @@ const Hero = () => {
   useEffect(() => {
     const currentRoleText = roles[currentRole];
     
-    const typeSpeed = isDeleting ? 30 : 80;
-    const pauseTime = isDeleting ? 200 : 600;
+    const typeSpeed = isDeleting ? 50 : 100;
+    const pauseTime = isDeleting ? 300 : 800;
     
     if (!isDeleting && displayedText === currentRoleText) {
       // Finished typing, pause then start deleting
@@ -68,7 +68,7 @@ const Hero = () => {
       
       {/* Cursor-reactive floating balls */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(6)].map((_, i) => {
+        {[...Array(12)].map((_, i) => {
           const colors = [
             'from-cyan-400 to-blue-500',
             'from-blue-400 to-purple-500', 
@@ -115,7 +115,7 @@ const Hero = () => {
         })}
         
         {/* Auto-moving floating orbs */}
-        {[...Array(3)].map((_, i) => {
+        {[...Array(6)].map((_, i) => {
           const orbColors = [
             'from-cyan-300 to-blue-400',
             'from-purple-300 to-pink-400',

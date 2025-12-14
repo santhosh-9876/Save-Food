@@ -97,6 +97,8 @@ const Contact = () => {
       <div className="glow-dot" style={{ top: '70%', right: '10%', animationDelay: '1.5s' }}></div>
       <div className="glow-dot" style={{ bottom: '30%', left: '50%', animationDelay: '0.8s' }}></div>
       
+
+      
       <div className="particles">
         {[...Array(6)].map((_, i) => (
           <div

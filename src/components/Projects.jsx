@@ -89,6 +89,8 @@ const Projects = () => {
       <div className="glow-dot" style={{ bottom: '20%', left: '40%', animationDelay: '2s' }}></div>
       <div className="glow-dot" style={{ bottom: '40%', right: '30%', animationDelay: '1.5s' }}></div>
       
+
+      
       {/* Floating particles */}
       <div className="particles">
         {[...Array(8)].map((_, i) => (
