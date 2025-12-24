@@ -13,7 +13,7 @@ const Hero = () => {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  const roles = ['Full-Stack Developer', 'Python Developer', 'Django Expert', 'React Specialist'];
+  const roles = ['Full-Stack Developer', 'Python Developer', 'Django REST Framework', 'React Js'];
   const [currentRole, setCurrentRole] = useState(0);
   const [displayedText, setDisplayedText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
@@ -212,7 +212,7 @@ const Hero = () => {
           >
             Passionate about building scalable web applications with{' '}
             <span className="text-blue-600 dark:text-blue-400 font-semibold">Python</span>,{' '}
-            <span className="text-cyan-600 dark:text-cyan-400 font-semibold">React</span>, and{' '}
+            <span className="text-cyan-600 dark:text-cyan-400 font-semibold">React Js</span>, and{' '}
             <span className="text-green-600 dark:text-green-400 font-semibold">Django REST Framework</span>.
             <br />
             I create clean, efficient solutions that solve real-world problems.
